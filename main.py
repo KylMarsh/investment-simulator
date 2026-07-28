@@ -5,6 +5,7 @@ def calculate_yearly_balances(
     annual_return,
     number_of_years
 ):
+
     yearly_balances = []
     current_balance = initial_investment
     monthly_return = annual_return / 100 / 12
@@ -17,6 +18,17 @@ def calculate_yearly_balances(
         yearly_balances.append(current_balance)
 
     return yearly_balances
+
+def calculate_total_contributions(
+    initial_investment, 
+    monthly_contribution, 
+    number_of_years
+):
+    total_monthly_contributions = monthly_contributions = (
+        monthly_contribution * 12 * number_of_years
+    )
+
+    return initial_investment + total_monthly_contributions
 
 initial_investment = float(input("Enter initial investment: £"))
 monthly_contribution = float(input("Enter monthly contribution: £"))
@@ -47,10 +59,12 @@ for balance in yearly_balances:
     print(f"Year {year}: £{balance:.2f}")
     year = year + 1
 
-total_contributions = (
-    initial_investment 
-    + monthly_contribution * 12 *number_of_years
+total_contributions = calculate_total_contributions(
+    initial_investment,
+    monthly_contribution,
+    number_of_years
 )
+
 final_balance = yearly_balances[-1]
 investment_growth = final_balance - total_contributions
 
